@@ -6,9 +6,9 @@ __pycache__/
 .mypy_cache/
 
 # User data
+.venv/
 configs/
-logs/
-venv/
+jlogs/
 
 # Other
 .dev/
