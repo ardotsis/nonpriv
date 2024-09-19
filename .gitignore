@@ -1,0 +1,14 @@
+# IDE
+.idea/
+
+# Cache data
+__pycache__/
+.mypy_cache/
+
+# User data
+configs/
+logs/
+venv/
+
+# Other
+.dev/
