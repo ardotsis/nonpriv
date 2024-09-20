@@ -2,9 +2,9 @@ import os
 import ssl
 from logging import getLogger
 
-from yanderat.lib import http
-from yanderat.lib.http import Request, Response, Status
-from yanderat.config import CONFIG, POWERSHELL_DIR
+from nonpriv.config import POWERSHELL_DIR
+from nonpriv.lib import http
+from nonpriv.lib.http import Request, Response, Status
 
 _logger = getLogger(__name__)
 

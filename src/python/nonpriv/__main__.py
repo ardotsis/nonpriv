@@ -1,10 +1,10 @@
 import asyncio
 from logging import getLogger
 
-from yanderat.app import http_server, agent_server
-from yanderat.config import CONFIG
+from nonpriv.app import agent_server, http_server
+from nonpriv.config import CONFIG
 
-_logger = getLogger("yanderat")
+_logger = getLogger("nonpriv")
 
 
 async def main() -> None:

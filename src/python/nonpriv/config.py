@@ -2,7 +2,7 @@ from logging import getLogger
 from pathlib import Path
 from typing import TypedDict, cast
 
-from yanderat.lib.common.toml_manager import TomlDict, TomlManager
+from nonpriv.lib.common.toml_manager import TomlDict, TomlManager
 
 _logger = getLogger(__name__)
 

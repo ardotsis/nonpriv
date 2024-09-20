@@ -2,10 +2,9 @@ import ssl
 from enum import StrEnum
 from logging import getLogger
 
-from yanderat.config import CONFIG
-from yanderat.lib import agent
-from yanderat.lib.agent import Author, Response, Status
-from yanderat.lib import human
+from nonpriv.config import CONFIG
+from nonpriv.lib import agent, human
+from nonpriv.lib.agent import Author, Response, Status
 
 _logger = getLogger(__name__)
 
@@ -45,22 +44,7 @@ class AgentServer(agent.Server):
         return True
 
     async def on_json_request(self, author: Author, data: dict) -> Response:
-        # Client requests
-        requests = data["requests"]
 
-        # Server responses
-        dct = {"responses": {}}
-        responses = dct["responses"]
+        dct: dict[str, any] = {"test_key": "test_value"}  # type ignore
 
-        for request in requests:
-            _logger.debug(f"{author.address} requests {request}")
-            if request == Request.DISCORD_WEBHOOK_URL:
-                responses[Request.DISCORD_WEBHOOK_URL] = CONFIG["discord_webhook_url"]
-            elif request == Request.SQLITE_FILE_URL:
-                responses[Request.SQLITE_FILE_URL] = CONFIG["sqlite_file_url"]
-            elif request == Request.BASE64_KEY:
-                responses[Request.BASE64_KEY] = TEMP_BASE64_KEY
-            else:
-                responses[Request.UNKNOWN] = Request.UNKNOWN
-                
         return Response(Status.OK, dct)

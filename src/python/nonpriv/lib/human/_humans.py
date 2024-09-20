@@ -1,5 +1,5 @@
-from ._models import Human
 from ..common.json_manager import JsonManager
+from ._models import Human
 
 
 class Manager:
@@ -13,12 +13,16 @@ class Manager:
 
     def add(self, human: Human) -> None:
         if self.get_by_id(human.id) is not None:
-            raise ValueError("Cannot add the human. The human already exists in the database.")
+            raise ValueError(
+                "Cannot add the human. The human already exists in the database."
+            )
         self._humans[human.id] = human
 
     def update(self, human: Human) -> None:
         if self.get_by_id(human.id) is None:
-            raise ValueError("Cannot update the human. The human doesn't exists in the database.")
+            raise ValueError(
+                "Cannot update the human. The human doesn't exists in the database."
+            )
         self._humans[human.id] = human
 
     def delete(self, human: Human) -> None:

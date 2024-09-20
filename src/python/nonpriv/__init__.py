@@ -2,12 +2,12 @@ import logging.handlers
 import os
 import sys
 
-from yanderat.lib.common import logging as yanderat_logging
-from yanderat.path import CONFIGS_DIR, LOGS_DIR
+from nonpriv.config import CONFIGS_DIR, LOGS_DIR
+from nonpriv.lib.common import logging as yanderat_logging
 
-for d in [CONFIGS_DIR, LOGS_DIR]:
-    if not d.exists():
-        os.mkdir(d)
+for dir_ in [CONFIGS_DIR, LOGS_DIR]:
+    if not dir_.exists():
+        os.mkdir(dir_)
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)

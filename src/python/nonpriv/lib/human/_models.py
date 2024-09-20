@@ -1,8 +1,5 @@
-"""VERY EXPERIMENTAL FEATURE"""
-
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass
 from enum import StrEnum
-from uuid import uuid4
 
 
 # Social -------------------
@@ -27,7 +24,7 @@ class Social:
 
 # Device -------------------
 @dataclass
-class Yanderat:
+class Nonpriv:
     uuid: str
     ip_addresses: list[str]
     auth_key: str
@@ -36,7 +33,7 @@ class Yanderat:
 
 @dataclass
 class Device:
-    yanderat: Yanderat
+    nonpriv: Nonpriv
 
 
 # Personal info -----------

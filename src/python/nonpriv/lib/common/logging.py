@@ -1,7 +1,7 @@
 import logging
 from copy import copy
 
-from yanderat.lib.common.color import Color
+from nonpriv.lib.common.color import Color
 
 _LEVELNAME_MAX_LENGTH = 8  # "CRITICAL"
 _LEVELNAME_COLORS = {
