@@ -1,73 +1,41 @@
-from dataclasses import dataclass
-from enum import StrEnum
-
-
-# Social -------------------
-@dataclass
-class X:
-    name: str
-    user_id: str
-
-
-@dataclass
-class Discord:
-    name: str
-    user_id: str
-    unique_id: str
-
-
-@dataclass
-class Social:
-    x: list[X]
-    discord: list[Discord]
-
-
-# Device -------------------
-@dataclass
-class Nonpriv:
-    uuid: str
-    ip_addresses: list[str]
-    auth_key: str
-    access_count: int
+from dataclasses import dataclass, field
+from uuid import uuid4
 
 
 @dataclass
 class Device:
-    nonpriv: Nonpriv
+    auth_key: str
+    ip_addresses: list[str]
+    id: str = str(uuid4())
 
 
-# Personal info -----------
 @dataclass
 class Name:
-    first: str
-    last: str
+    first: str | None = None
+    last: str | None = None
 
 
 @dataclass
 class Birth:
-    year: int
-    month: int
-    day: int
+    year: int | None = None
+    month: int | None = None
+    day: int | None = None
 
 
-class Gender(StrEnum):
-    Man = "Man"
-    Woman = "Woman"
+class Gender:
+    Male = "male"
+    Female = "female"
 
 
 @dataclass
 class Human:
-    id: str
-    discord_webhook_token: str
-
-    name: Name | None = None
-    age: int | None = None
+    id: str = str(uuid4())
+    discord_webhook_token: str | None = None
+    name: Name = field(default_factory=Name)
     gender: Gender | None = None
-    birth: Birth | None = None
+    age: int | None = None
+    birth: Birth = field(default_factory=Birth)
     height: int | None = None
     phone_number: str | None = None
-    #
-    devices: list[Device] | None = None
-    social: Social | None = None
-    #
-    description: str | None = None
+    devices: list[Device] = field(default_factory=list)
+    description: str = ""

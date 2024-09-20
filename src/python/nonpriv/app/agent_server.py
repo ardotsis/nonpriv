@@ -45,6 +45,6 @@ class AgentServer(agent.Server):
 
     async def on_json_request(self, author: Author, data: dict) -> Response:
 
-        dct: dict[str, any] = {"test_key": "test_value"}  # type ignore
+        resp_dct: dict[str, any] = {"test_key": "test_value"}
 
-        return Response(Status.OK, dct)
+        return Response(Status.OK, resp_dct)

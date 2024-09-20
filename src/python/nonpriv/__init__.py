@@ -5,9 +5,9 @@ import sys
 from nonpriv.config import CONFIGS_DIR, LOGS_DIR
 from nonpriv.lib.common import logging as yanderat_logging
 
-for dir_ in [CONFIGS_DIR, LOGS_DIR]:
-    if not dir_.exists():
-        os.mkdir(dir_)
+for system_dir in [CONFIGS_DIR, LOGS_DIR]:
+    if not system_dir.exists():
+        os.mkdir(system_dir)
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
