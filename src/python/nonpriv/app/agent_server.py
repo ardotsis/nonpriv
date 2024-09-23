@@ -32,19 +32,15 @@ class AgentServer(agent.Server):
 
     async def on_ping(self, author: Author) -> None:
         _logger.info(f"{author.address} ping to the server")
-        return None
 
     async def on_disconnect(self, author: Author) -> None:
         _logger.info(f"{author.address} has been disconnected from the server")
-        return None
 
     async def on_authenticate(self, author: Author, key: bytes) -> bool:
-
         _logger.info(f"{author.address} has been authenticated ({key!r})")
         return True
 
     async def on_json_request(self, author: Author, data: dict) -> Response:
-
         resp_dct: dict[str, any] = {"test_key": "test_value"}
 
         return Response(Status.OK, resp_dct)

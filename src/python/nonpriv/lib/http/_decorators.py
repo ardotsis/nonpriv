@@ -1,4 +1,3 @@
-# todo: typing
 ON_ACCESS_ATTR = "__on_access__"
 PAGE_ATTR = "__page__"
 

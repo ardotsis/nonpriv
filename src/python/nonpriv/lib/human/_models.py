@@ -1,18 +1,18 @@
 from dataclasses import dataclass, field
 from uuid import uuid4
 
-
-@dataclass
-class Device:
-    auth_key: str
-    ip_addresses: list[str]
-    id: str = str(uuid4())
+_get_uuid4_str = lambda: str(uuid4())
 
 
 @dataclass
 class Name:
     first: str | None = None
     last: str | None = None
+
+
+class Gender:
+    Male = "male"
+    Female = "female"
 
 
 @dataclass
@@ -22,14 +22,16 @@ class Birth:
     day: int | None = None
 
 
-class Gender:
-    Male = "male"
-    Female = "female"
+@dataclass
+class Device:
+    auth_key: str
+    ip_addresses: list[str]
+    id: str = _get_uuid4_str()
 
 
 @dataclass
 class Human:
-    id: str = str(uuid4())
+    id: str = _get_uuid4_str()
     discord_webhook_token: str | None = None
     name: Name = field(default_factory=Name)
     gender: Gender | None = None

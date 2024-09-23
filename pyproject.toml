@@ -1,0 +1,12 @@
+[tool.ruff]
+# Assume Python 3.12
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "D100", # Missing docstring in public module
+    "D101", # Missing docstring in public class
+    "D102", # Missing docstring in public method
+    "D107", # Missing docstring in `__init__`
+]

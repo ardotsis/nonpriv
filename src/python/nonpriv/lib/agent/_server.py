@@ -18,10 +18,13 @@ PAYLOAD_SIZE_LEN: int = 4
 BYTEORDER: Literal["big", "little"] = "little"
 
 
-# todo: USE @overload decorator -> https://qiita.com/suzuki_sh/items/0f05d3e6d3c4c6f12c26
+# TODO: USE @overload decorator -> https://qiita.com/suzuki_sh/items/0f05d3e6d3c4c6f12c26
 class Server(AsyncServer):
     def __init__(
-        self, host: str, port: int, ssl_context: ssl.SSLContext | None = None
+        self,
+        host: str,
+        port: int,
+        ssl_context: ssl.SSLContext | None = None,
     ) -> None:
         super().__init__(host, port, self.__new_conn, ssl_context)
 
@@ -58,7 +61,7 @@ class Server(AsyncServer):
                 op_int = self.__bytes_to_int(await reader.read(OP_LEN))
                 payload_size = self.__bytes_to_int(await reader.read(PAYLOAD_SIZE_LEN))
             except ValueError:
-                _logger.error(f"{pn} sends an unknown int bytes - goodbye")
+                _logger.error(f"{pn} sends an unknown int bytes")
                 return
 
             _logger.debug(f"OP Int: {op_int} Payload Size: {payload_size}")
@@ -118,7 +121,9 @@ class Server(AsyncServer):
         return status_b + payload_size_b + payload
 
     async def __send_a_status(
-        self, writer: asyncio.StreamWriter, status: Status
+        self,
+        writer: asyncio.StreamWriter,
+        status: Status,
     ) -> None:
         resp = self.__get_resp_bytes(status)
         await self.__send(writer, resp)

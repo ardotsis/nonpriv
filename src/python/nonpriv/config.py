@@ -2,7 +2,7 @@ from logging import getLogger
 from pathlib import Path
 from typing import TypedDict, cast
 
-from nonpriv.lib.common.toml_manager import TomlDict, TomlManager
+from nonpriv.lib.common.toml_manager import TomlManager
 
 _logger = getLogger(__name__)
 
@@ -29,18 +29,14 @@ DEFAULT_CONFIG: Config = {
     "agent_port": 5555,
     "discord_webhook_url": "",
     "sqlite_file_url": "",
-    "humans_path": str(ROOT_DIR / "humans")
+    "humans_path": str(ROOT_DIR / "humans"),
 }
 # fmt: on
 
 
 def _get_config() -> Config:
-    toml = TomlManager(str(CONFIG_PATH))
-    if CONFIG_PATH.exists():
-        return cast(Config, toml.load())
-    else:
-        toml.write(cast(TomlDict, DEFAULT_CONFIG))
-        return DEFAULT_CONFIG
+    toml_manager = TomlManager(str(CONFIG_PATH), DEFAULT_CONFIG)
+    return cast(Config, toml_manager.get())
 
 
 CONFIG = _get_config()
